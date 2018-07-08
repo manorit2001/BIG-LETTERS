@@ -201,13 +201,16 @@ dict={
 #	str+=c
 #	c=chr(ord(c)+1)
 import sys
-if(len(sys.argv)<2):
-	print('''usage: design.py text''')
+if(len(sys.argv)<3):
+	print('''usage: design.py text length_of_console''')
 	sys.exit()
 else:
 	str=sys.argv[1]
+	leng=int(sys.argv[2])
 for j in range(5):
-	print('')
+	temp=''
 	for i in str.upper():
-		print(dict[i][j].ljust(8),end=' ')
+		temp+=dict[i][j].ljust(8)
+		temp+=' '
+	print(temp.center(leng))
 
