@@ -193,6 +193,8 @@ dict={
 		 '   //',
 		 ' //',
 		 '////////']
+	,
+' ':	['','','','','']
 		 
 }
 #c='W'
@@ -202,11 +204,11 @@ dict={
 #	c=chr(ord(c)+1)
 import sys
 if(len(sys.argv)<3):
-	print('''usage: design.py text length_of_console''')
+	print('''usage: design.py length_of_console text''')
 	sys.exit()
 else:
-	str=sys.argv[1]
-	leng=int(sys.argv[2])
+	str=' '.join(sys.argv[2:])
+	leng=int(sys.argv[1])
 for j in range(5):
 	temp=''
 	for i in str.upper():
