@@ -290,14 +290,18 @@ if(len(sys.argv)<3):
 else:       
 	str=' '.join(sys.argv[2:])
 	leng=int(sys.argv[1])
+maxletters=(int(sys.argv[1])//9)-1
 try:
-    for j in range(5):
-            temp=''
-            for i in str.upper():
-                assert len(dict[i][j].ljust(8))<=8
-                temp+=dict[i][j].ljust(8)
-                temp+=' '
-            print(temp.center(leng))
+    batches=[str.upper()[i:i+maxletters] for i in range(0,len(str),maxletters)]
+    for x in batches:
+        for j in range(5):
+                temp=''
+                for i in x:
+                    assert len(dict[i][j].ljust(8))<=8
+                    temp+=dict[i][j].ljust(8)
+                    temp+=' '
+                print(temp.center(leng))
+        print()
 except AssertionError as e:
     e.args+=("letter",i)
     raise
