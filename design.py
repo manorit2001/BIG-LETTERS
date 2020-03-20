@@ -283,24 +283,34 @@ dict={
 #	c=ch r(ord(c)+1)
 import sys   
 import subprocess as sp
+import random
+import time
 sp.call("clear || cls",shell=True)
 if(len(sys.argv)<3):
 	print('''usage: design.py length_of_console text''')
 	sys.exit()
 else:       
-	str=' '.join(sys.argv[2:])
+	stri=' '.join(sys.argv[2:])
 	leng=int(sys.argv[1])
 maxletters=(int(sys.argv[1])//9)-1
 try:
-    batches=[str.upper()[i:i+maxletters] for i in range(0,len(str),maxletters)]
+    #batches=[str.upper()[i:i+maxletters] for i in range(0,len(str),maxletters)]
+    temp=stri.upper().split() 
+    batches=[""]
+    for i in temp:
+        if(len(batches[-1])+len(i)<maxletters):
+            batches[-1]+=i+' '
+        else:
+            batches+=[i+' ']
     for x in batches:
         for j in range(5):
-                temp=''
-                for i in x:
-                    assert len(dict[i][j].ljust(8))<=8
-                    temp+=dict[i][j].ljust(8)
-                    temp+=' '
-                print(temp.center(leng))
+            temp=''
+            for i in x:
+                assert len(dict[i][j].ljust(8))<=8
+                temp+=dict[i][j].ljust(8)
+                temp+=' '
+            print(temp.center(leng))
+            #time.sleep(random.randint(1,3))
         print()
 except AssertionError as e:
     e.args+=("letter",i)
